@@ -13,8 +13,10 @@ public class ShopResource {
 
 	@RequestMapping(value="/shops", method=RequestMethod.POST)
 	public RestResponse addShop(ShopDto shop) {
-		RestResponse restResponse = new RestResponse();
 		
+		
+		
+		RestResponse restResponse = new RestResponse();
 		restResponse.setMessgae("successfully added shop");
 		restResponse.setStatus(HttpStatus.OK);
 		return restResponse;

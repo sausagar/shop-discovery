@@ -13,7 +13,5 @@ public class ShopResponse {
 	public void setEntity(Entity entity) {
 		this.entity = entity;
 	}
-
-	
 	
 }
