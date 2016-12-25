@@ -2,6 +2,7 @@ package com.deutschebank.service;
 
 import com.deutschebank.entities.ShopEntity;
 import com.deutschebank.rest.dto.ShopDto;
+import com.deutschebank.rest.exception.SDTechnicalException;
 
 
 /**
@@ -23,9 +24,10 @@ public interface ShopService {
 	 * @return
 	 * 
 	 * Returns the nearest shop from the given location
+	 * @throws SDTechnicalException 
 	 * 
 	 */
-	public ShopEntity getNearsetShop(Double lattitue, Double longitude);
+	public ShopEntity getNearsetShop(Double lattitue, Double longitude) throws SDTechnicalException;
 	
 	/**
 	 * @param shopDto

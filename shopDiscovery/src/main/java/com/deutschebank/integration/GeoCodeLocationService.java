@@ -1,4 +1,4 @@
-package com.deutschebank.integration.google;
+package com.deutschebank.integration;
 
 import org.json.JSONObject;
 

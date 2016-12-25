@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
+import com.deutschebank.integration.GeoCodeLocationService;
+
 /**
  * @author Saurabh.Sagar
  *  This is the Google Geocode API implementation for GeoCodeLocationService
