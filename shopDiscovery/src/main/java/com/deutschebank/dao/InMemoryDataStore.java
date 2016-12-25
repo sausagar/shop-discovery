@@ -8,6 +8,12 @@ import java.util.Map;
 
 import com.deutschebank.entities.ShopEntity;
 
+/**
+ * @author Saurabh.Sagar
+ * This is an in-memory Datastore
+ * Stores the shop specific data in a map
+ * Assumption : Shop names are unique
+ */
 public class InMemoryDataStore {
 	
 	private Map<String, ShopEntity> shops = null;

@@ -1,6 +1,11 @@
 package com.deutschebank.entities;
 
-public class ShopAddressEntity {
+/**
+ * @author Saurabh.Sagar
+ * EntityObject for Shop Address
+ *
+ */
+public class ShopAddressEntity implements Entity{
 
 	private String shopNumber;
 	private String zipCode;

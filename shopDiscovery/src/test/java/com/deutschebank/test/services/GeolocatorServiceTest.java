@@ -8,18 +8,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.deutschebank.integration.google.GeocodeLocatorService;
+import com.deutschebank.integration.google.GoogleGeocodeLocatorService;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
 public class GeolocatorServiceTest {
 
 	@Autowired
-	private GeocodeLocatorService geoCodeLocator;
+	private GoogleGeocodeLocatorService geoCodeLocator;
 	
 	@Test
-	public void test() {
-       assertNotNull(geoCodeLocator.getResponseFromGoogleGeocodeAPI("411028+hadapsar+pune"));
+	public void getResponseFromGoogleGeocodeAPITest() {
+       assertNotNull(geoCodeLocator.getResponseForAddress("411028+hadapsar+pune"));
 	}
 
 }

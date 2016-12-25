@@ -1,5 +1,10 @@
 package com.deutschebank.entities;
 
+/**
+ * @author Saurabh.Sagar
+ * Entity Object for Shop
+ *
+ */
 public class ShopEntity implements Entity{
 
 	private String shopName;

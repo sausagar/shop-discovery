@@ -14,14 +14,20 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
+/**
+ * @author Saurabh.Sagar
+ *  This is the Google Geocode API implementation for GeoCodeLocationService
+ *
+ */
 @Service
 @PropertySource("classpath:google.properties")
-public class GeocodeLocatorService {
+public class GoogleGeocodeLocatorService implements GeoCodeLocationService{
 
 	@Value("${geocode-api-uri}")
 	private String geocodeURI;
 	
-	public JSONObject getResponseFromGoogleGeocodeAPI(String encodedAddr) {
+	@Override
+	public JSONObject getResponseForAddress(String encodedAddr) {
 
 		HttpGet httpGet = new HttpGet(geocodeURI + encodedAddr
 				);
@@ -53,5 +59,8 @@ public class GeocodeLocatorService {
 		return jsonObject;
 
 	}
+	
+	
+	
 
 }
