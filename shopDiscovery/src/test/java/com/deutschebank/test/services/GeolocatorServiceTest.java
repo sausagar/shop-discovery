@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.deutschebank.integration.google.GoogleGeocodeLocatorService;
+import com.deutschebank.rest.exception.SDTechnicalException;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -18,7 +19,7 @@ public class GeolocatorServiceTest {
 	private GoogleGeocodeLocatorService geoCodeLocator;
 	
 	@Test
-	public void getResponseFromGoogleGeocodeAPITest() {
+	public void getResponseFromGoogleGeocodeAPITest() throws SDTechnicalException {
        assertNotNull(geoCodeLocator.getResponseForAddress("411028+hadapsar+pune"));
 	}
 

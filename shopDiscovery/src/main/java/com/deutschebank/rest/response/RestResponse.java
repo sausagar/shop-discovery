@@ -2,19 +2,17 @@ package com.deutschebank.rest.response;
 
 import org.springframework.http.HttpStatus;
 
-import com.deutschebank.entities.Entity;
-
 public class RestResponse {
 	
     protected HttpStatus status;
 	protected String messgae;
-	protected Entity entity;
+	protected Object entity;
 	
-	public Entity getEntity() {
+	public Object getEntity() {
 		return entity;
 	}
 
-	public void setEntity(Entity entity) {
+	public void setEntity(Object entity) {
 		this.entity = entity;
 	}
 

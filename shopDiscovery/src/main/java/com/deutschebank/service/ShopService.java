@@ -1,5 +1,7 @@
 package com.deutschebank.service;
 
+import java.util.List;
+
 import com.deutschebank.entities.ShopEntity;
 import com.deutschebank.rest.dto.ShopDto;
 import com.deutschebank.rest.exception.SDTechnicalException;
@@ -23,7 +25,7 @@ public interface ShopService {
 	 * @param longitude
 	 * @return
 	 * 
-	 * Returns the nearest shop from the given location
+	 * Returns the nearest shops from the given location
 	 * @throws SDTechnicalException 
 	 * 
 	 */
@@ -32,7 +34,17 @@ public interface ShopService {
 	/**
 	 * @param shopDto
 	 * save shop
+	 * @return 
+	 * @throws SDTechnicalException 
 	 */
-	public void saveShop(ShopDto shopDto);
+	public ShopEntity saveShop(ShopDto shopDto) throws SDTechnicalException;
+	
+	/**
+	 * @return
+	 * 
+	 * Gives the list of all available shops
+	 * 
+	 */
+	public List<ShopEntity> getAllShops();
 	
 }

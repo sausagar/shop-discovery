@@ -9,12 +9,15 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
+import com.deutschebank.integration.Coordinate;
 import com.deutschebank.integration.GeoCodeLocationService;
+import com.deutschebank.rest.exception.SDTechnicalException;
 
 /**
  * @author Saurabh.Sagar
@@ -29,7 +32,7 @@ public class GoogleGeocodeLocatorService implements GeoCodeLocationService{
 	private String geocodeURI;
 	
 	@Override
-	public JSONObject getResponseForAddress(String encodedAddr) {
+	public JSONObject getResponseForAddress(String encodedAddr) throws SDTechnicalException {
 
 		HttpGet httpGet = new HttpGet(geocodeURI + encodedAddr
 				);
@@ -48,21 +51,33 @@ public class GoogleGeocodeLocatorService implements GeoCodeLocationService{
 		} catch (ClientProtocolException e) {
 		} catch (IOException e) {
 		}
-
-		System.out.println(stringBuilder.toString());
 		
 		JSONObject jsonObject = new JSONObject();
 		try {
 			jsonObject = new JSONObject(stringBuilder.toString());
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			throw new SDTechnicalException("Unable to parse JSON from Google Geocoding API", e);
 		}
 		return jsonObject;
 
 	}
 	
-	
+	@Override
+	public Coordinate getCoordinatesForAddress(String addr) throws SDTechnicalException {
+		JSONObject jsonObj = getResponseForAddress(addr);
+		JSONArray jsonArr = jsonObj.getJSONArray("results");
+		if(jsonArr == null || jsonArr.length() == 0) {
+			throw new SDTechnicalException("no result found for this address");
+		}
+		// Considering the first result only
+		jsonObj = jsonArr.getJSONObject(0);
+        JSONObject geoMetryObject = jsonObj.getJSONObject("geometry");
+        JSONObject locationObject = geoMetryObject.getJSONObject("location");
+        double lat = locationObject.getDouble("lat");
+        double lon = locationObject.getDouble("lng");
+		return new Coordinate(lat, lon);
+	}
 	
 
 }
